@@ -1,6 +1,5 @@
 """Database layer tests (require a real Photos library)."""
 
-import pytest
 
 from photokit_api import db
 

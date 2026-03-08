@@ -11,6 +11,12 @@ from fastapi.responses import FileResponse, StreamingResponse
 
 from photokit_api import db
 
+try:
+    from pillow_heif import register_heif_opener
+    register_heif_opener()
+except ImportError:
+    pass
+
 router = APIRouter(prefix="/assets", tags=["images"])
 
 _THUMB_SIZE = 256

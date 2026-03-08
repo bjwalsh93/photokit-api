@@ -8,11 +8,8 @@ from __future__ import annotations
 
 import datetime
 import logging
-from functools import lru_cache
-from pathlib import Path
 from typing import Any
 
-import osxphotos
 from osxphotos import PhotosDB, QueryOptions
 
 from photokit_api.server.models import (

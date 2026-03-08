@@ -32,14 +32,15 @@ dependencies = [
     "osxphotos>=0.69.0",
     "pyobjc-framework-Photos>=10.0; sys_platform == 'darwin'",
     "pillow>=10.0",
+    "pillow-heif>=0.16.0",
 ]
 
 [project.scripts]
 photokit-api = "photokit_api.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/photokit-api/photokit-api"
-Repository = "https://github.com/photokit-api/photokit-api"
+Homepage = "https://github.com/bjwalsh93/photokit-api"
+Repository = "https://github.com/bjwalsh93/photokit-api"
 
 [project.optional-dependencies]
 dev = [

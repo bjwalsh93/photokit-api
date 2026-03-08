@@ -36,7 +36,7 @@ Apple Photos has no API. You can't programmatically search your library, serve t
 pip install photokit-api
 ```
 
-Requires **macOS** and **Python 3.10+**. Your terminal needs **Full Disk Access** (System Settings > Privacy & Security > Full Disk Access).
+Requires **macOS** and **Python 3.9+**. Your terminal needs **Full Disk Access** (System Settings > Privacy & Security > Full Disk Access).
 
 ### 2. Start the server
 
@@ -166,14 +166,14 @@ Write path:  FastAPI → pyobjc → PhotoKit → PHAssetChangeRequest
 ## Requirements
 
 - **macOS** (Catalina or later)
-- **Python 3.10+**
+- **Python 3.9+**
 - **Full Disk Access** for your terminal app (System Settings > Privacy & Security)
 - **Photos access** for your terminal app (System Settings > Privacy & Security > Photos)
 
 ## Development
 
 ```bash
-git clone https://github.com/photokit-api/photokit-api.git
+git clone https://github.com/bjwalsh93/photokit-api.git
 cd photokit-api
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"

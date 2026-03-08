@@ -48,7 +48,7 @@ def _serve(args: argparse.Namespace) -> None:
     from photokit_api.server.app import create_app
     from photokit_api.server.auth import get_or_create_token
 
-    print(f"Loading Photos library...")
+    print("Loading Photos library...")
     db.get_db(library_path=args.library)
     print(f"Library loaded: {db.get_db().library_path}")
 

@@ -4,7 +4,6 @@ These require a real Photos library to be meaningful; they verify
 the API wiring and response shapes.
 """
 
-import pytest
 
 
 def test_health(client):
