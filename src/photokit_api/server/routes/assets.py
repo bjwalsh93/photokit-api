@@ -33,6 +33,9 @@ def list_assets(
     album: Optional[str] = Query(None, description="Album name"),
     keyword: Optional[str] = Query(None),
     person: Optional[str] = Query(None),
+    lat: Optional[float] = Query(None, description="Latitude for geo filter"),
+    lng: Optional[float] = Query(None, description="Longitude for geo filter"),
+    radius_km: float = Query(5.0, description="Radius in km (default 5)"),
     limit: int = Query(100, ge=1, le=1000),
     offset: int = Query(0, ge=0),
 ) -> AssetListResponse:
@@ -54,6 +57,9 @@ def list_assets(
         album=album,
         keyword=keyword,
         person=person,
+        lat=lat,
+        lng=lng,
+        radius_km=radius_km,
         limit=limit,
         offset=offset,
     )

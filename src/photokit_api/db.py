@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import datetime
 import logging
+import math
 from typing import Any
 
 from osxphotos import PhotosDB, QueryOptions
@@ -82,6 +83,18 @@ def _photo_to_asset(photo: Any) -> AssetModel:
     )
 
 
+def _haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    """Great-circle distance in km between two lat/lng points."""
+    R = 6371.0
+    dlat = math.radians(lat2 - lat1)
+    dlon = math.radians(lon2 - lon1)
+    a = (
+        math.sin(dlat / 2) ** 2
+        + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dlon / 2) ** 2
+    )
+    return R * 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+
+
 def list_assets(
     *,
     media_type: str | None = None,
@@ -94,6 +107,9 @@ def list_assets(
     album: str | None = None,
     keyword: str | None = None,
     person: str | None = None,
+    lat: float | None = None,
+    lng: float | None = None,
+    radius_km: float = 5.0,
     limit: int = 100,
     offset: int = 0,
 ) -> tuple[list[AssetModel], int]:
@@ -121,6 +137,13 @@ def list_assets(
         photos = [p for p in photos if getattr(p, "intrash", False)]
     elif trashed is False:
         photos = [p for p in photos if not getattr(p, "intrash", False)]
+
+    if lat is not None and lng is not None:
+        photos = [
+            p for p in photos
+            if p.location and p.location[0] is not None
+            and _haversine_km(lat, lng, p.location[0], p.location[1]) <= radius_km
+        ]
 
     photos.sort(key=lambda p: (p.date or datetime.datetime.min), reverse=True)
     total = len(photos)
